@@ -31,6 +31,14 @@ export default function ArchiveDetailPage({ params }) {
     content = <NewsList news={news} />;
   }
 
+  if (
+    (selectedYear &&
+      !getAvailableNewsYears(selectedYear).includes(+selectedYear)) ||
+    (selectedMonth &&
+      !getAvailableNewsMonths(selectedYear).includes(+selectedMonth))
+  ) {
+    throw new Error("Invalid Filter!");
+  }
   return (
     <>
       <header id='archive-header'>
